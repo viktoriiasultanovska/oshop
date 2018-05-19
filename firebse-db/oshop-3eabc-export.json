@@ -1,0 +1,27 @@
+{
+  "operations" : {
+    "create-product" : {
+      "XXXXXXXXXXXXXXXXXXXXXXXX" : true
+    }
+  },
+  "roles" : {
+    "admins" : {
+      "XXXXXXXXXXXXXXXXXXXXXXXX" : true
+    },
+    "storeManages" : {
+      "XXXXXXXXXXXXXXXXXXXXXXXX" : true,
+      "YYYYYYYYYYYYYYYYYYYYYYYY" : true
+    }
+  },
+  "users" : {
+    "XXXXXXXXXXXXXXXXXXXXXXXX" : {
+      "email" : "mickey.mouse@gmail.com",
+      "name" : "Mickey Mouse"
+    },
+    "YYYYYYYYYYYYYYYYYYYYYYYY" : {
+      "email" : "Minnie.Mouse@gmail.com",
+      "isAdmin" : true,
+      "name" : "Minnie Mouse"
+    }
+  }
+}
