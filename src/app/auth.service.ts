@@ -19,7 +19,7 @@ export class AuthService {
 
     this.afAuth.auth.signInWithPopup(provider).then(function (result) {
       console.log(result);
-    };
+    });
   }
 
   logout() {
