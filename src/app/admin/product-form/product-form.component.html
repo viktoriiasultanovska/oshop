@@ -40,7 +40,7 @@
           <p *ngIf="imageUrl.errors.url">Please enter a valid url.</p>
         </div>
       </div>
-      <button class="btn btn-primary" *ngIf="form.valid">Save</button>
+      <button class="btn btn-primary" disabled="!form.valid">Save</button>
     </form>
   </div>
 
