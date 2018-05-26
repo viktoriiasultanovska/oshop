@@ -26,6 +26,7 @@ import {ProductFormComponent} from './admin/product-form/product-form.component'
 import {CategoryService} from './service/category/category.service';
 import {FormsModule} from '@angular/forms';
 import {ProductService} from './service/product/product.service';
+import {CustomFormsModule} from 'ng2-validation';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import {ProductService} from './service/product/product.service';
   imports: [
     BrowserModule,
     FormsModule,
+    CustomFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
