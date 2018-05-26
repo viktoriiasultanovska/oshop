@@ -23,7 +23,7 @@
       </div>
       <div class="form-group">
         <label for="category">Category</label>
-        <select #category="ngModel" [(ngModel)]="product.category" required name="category" id="category" class="form-control">
+        <select #category="ngModel"  [(ngModel)]="product.category" required name="category" id="category" class="form-control">
           <option value=""></option>
           <!--(categories | async)?.slice().reverse() - Descending orderByChild() on firebase-->
           <option *ngFor="let category of (categories | async)?.slice().reverse()" [value]="category.key">{{category.name}}</option>

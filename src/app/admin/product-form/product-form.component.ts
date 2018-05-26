@@ -13,7 +13,7 @@ export class ProductFormComponent implements OnInit {
 
   categories: Observable<any[]>;
   product = {};
-  id;
+  id: string;
 
   constructor(
     private categoryService: CategoryService,
