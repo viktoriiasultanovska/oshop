@@ -3,7 +3,7 @@
     <form #addProductForm="ngForm" name="addProductForm" (ngSubmit)="save(addProductForm.value)">
       <div class="form-group">
         <label for="title">Title</label>
-        <input #title="ngModel" ngModel required name="title" type="text" id="title" class="form-control" />
+        <input #title="ngModel" [(ngModel)]="product.title" required name="title" type="text" id="title" class="form-control" />
         <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
           Title is required.
         </div>
@@ -14,7 +14,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text">$</span>
           </div>
-          <input #price="ngModel" required min ngModel name="price" type="number" id="price" class="form-control">
+          <input #price="ngModel" [(ngModel)]="product.price" required min name="price" type="number" id="price" class="form-control">
         </div>
         <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
           <div *ngIf="price.errors.required">Price is required.</div>
@@ -23,7 +23,7 @@
       </div>
       <div class="form-group">
         <label for="category">Category</label>
-        <select #category="ngModel" required ngModel name="category" id="category" class="form-control">
+        <select #category="ngModel" [(ngModel)]="product.category" required name="category" id="category" class="form-control">
           <option value=""></option>
           <!--(categories | async)?.slice().reverse() - Descending orderByChild() on firebase-->
           <option *ngFor="let category of (categories | async)?.slice().reverse()" [value]="category.key">{{category.name}}</option>
@@ -34,7 +34,7 @@
       </div>
       <div class="form-group">
         <label for="imageUrl">Image URL</label>
-        <input #imageUrl="ngModel" required url ngModel name="imageUrl" type="text" id="imageUrl" class="form-control">
+        <input #imageUrl="ngModel" [(ngModel)]="product.imageUrl" required url name="imageUrl" type="text" id="imageUrl" class="form-control">
         <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
           <p *ngIf="imageUrl.errors.required">Image URL is required.</p>
           <p *ngIf="imageUrl.errors.url">Please enter a valid url.</p>
@@ -46,7 +46,7 @@
 
   <div class="com-md-6">
     <div class="card" style="width: 18rem;">
-      <img class="card-img-top" [src]="imageUrl.value">
+      <img class="card-img-top" [src]="imageUrl.value" *ngIf="product.imageUrl">
       <div class="card-body">
         <h5 class="card-title">{{ title.value }}</h5>
         <p class="card-text">{{category.value}}</p>

@@ -18,4 +18,9 @@ export class ProductService {
       .snapshotChanges();
   }
 
+  get(id) {
+    return this.db.object('/products/' + id)
+      .valueChanges();
+  }
+
 }
