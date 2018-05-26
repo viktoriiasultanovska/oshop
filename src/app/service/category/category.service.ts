@@ -9,8 +9,7 @@ export class CategoryService {
   }
 
   getCategories(): Observable<any> {
-    return this.db.object('/categories')
-      .valueChanges();
+    return this.db.object('categories').snapshotChanges();
   }
 
 }

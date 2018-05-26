@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CategoryService} from '../../service/category/category.service';
+import {AngularFireDatabase} from 'angularfire2/database';
 
 @Component({
   selector: 'app-product-form',
@@ -8,15 +9,19 @@ import {CategoryService} from '../../service/category/category.service';
 })
 export class ProductFormComponent implements OnInit {
 
-  categories;
-  categoryCodes;
+  categories: any[] = [];
 
-  constructor(private categoryService: CategoryService) {
+  constructor(private categoryService: CategoryService, private db: AngularFireDatabase) {
     this.categoryService.getCategories()
-      .subscribe(categories => {
-        this.categories = categories;
-        this.categoryCodes = Object.keys(categories);
+      .map(action => {
+        return action.payload.toJSON();
+      }).subscribe(result => {
+      Object.keys(result).map(key => {
+        this.categories.push({'key': key, 'data': result[key]});
       });
+    });
+
+
   }
 
   ngOnInit() {
