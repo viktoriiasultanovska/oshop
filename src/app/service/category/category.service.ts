@@ -15,6 +15,7 @@ export class CategoryService {
     this.categoriesRef = this.db.list('categories', ref => ref.orderByChild('name' ));
     /**
      * @see https://github.com/angular/angularfire2/blob/master/docs/rtdb/lists.md
+     * @see https://github.com/angular/angularfire2/blob/master/docs/rtdb/querying-lists.md
      * @type {AngularFireList<any>}
      */
     // Use snapshotChanges().map() to store the key
