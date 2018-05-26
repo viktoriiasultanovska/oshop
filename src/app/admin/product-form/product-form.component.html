@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-6">
-    <form #form="ngForm" (ngSubmit)="save(form.value)">
+    <form #addProductForm="ngForm" name="addProductForm" (ngSubmit)="save(addProductForm.value)">
       <div class="form-group">
         <label for="title">Title</label>
         <input #title="ngModel" ngModel required name="title" type="text" id="title" class="form-control" />
@@ -40,7 +40,7 @@
           <p *ngIf="imageUrl.errors.url">Please enter a valid url.</p>
         </div>
       </div>
-      <button class="btn btn-primary" disabled="!form.valid">Save</button>
+      <button class="btn btn-primary" [disabled]="!addProductForm.valid">Save</button>
     </form>
   </div>
 
