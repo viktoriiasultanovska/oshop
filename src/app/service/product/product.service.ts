@@ -18,7 +18,7 @@ export class ProductService {
       .snapshotChanges();
   }
 
-  get(id) {
+  get(id): Observable<any> {
     return this.db.object('/products/' + id)
       .valueChanges();
   }
@@ -26,6 +26,11 @@ export class ProductService {
   update(id, product) {
     return this.db.object('/products/' + id)
       .update(product);
+  }
+
+  delete(id) {
+    return this.db.object('/products/' + id)
+      .remove();
   }
 
 }
