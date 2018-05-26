@@ -14,8 +14,8 @@ export class ProductFormComponent implements OnInit {
 
   constructor(private categoryService: CategoryService, private db: AngularFireDatabase) {
     this.categories = this.categoryService.getCategories()
-      .map(changes => {
-        return changes.map(c => ({key: c.payload.key, ...c.payload.val()}));
+      .map(categories => {
+        return categories.map(category => ({key: category.payload.key, ...category.payload.val()}));
       });
 
 

@@ -16,7 +16,8 @@
     <label for="category">Category</label>
     <select id="category" class="form-control">
       <option value=""></option>
-      <option *ngFor="let category of categories | async" [value]="category.key">{{category.name}}</option>
+      <!--(categories | async)?.slice().reverse() - Descending orderByChild() on firebase-->
+      <option *ngFor="let category of (categories | async)?.slice().reverse()" [value]="category.key">{{category.name}}</option>
     </select>
   </div>
   <div class="form-group">
