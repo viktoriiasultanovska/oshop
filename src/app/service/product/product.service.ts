@@ -23,4 +23,9 @@ export class ProductService {
       .valueChanges();
   }
 
+  update(id, product) {
+    return this.db.object('/products/' + id)
+      .update(product);
+  }
+
 }

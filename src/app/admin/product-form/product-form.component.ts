@@ -13,6 +13,7 @@ export class ProductFormComponent implements OnInit {
 
   categories: Observable<any[]>;
   product = {};
+  id;
 
   constructor(
     private categoryService: CategoryService,
@@ -25,10 +26,10 @@ export class ProductFormComponent implements OnInit {
         return categories.map(category => ({key: category.payload.key, ...category.payload.val()}));
       });
 
-    const id = this.route.snapshot.paramMap.get('id');
+    this.id = this.route.snapshot.paramMap.get('id');
 
-    if (id) {
-      this.productService.get(id)
+    if (this.id) {
+      this.productService.get(this.id)
         .take(1)
         .subscribe(product => {
           this.product = product;
@@ -37,7 +38,14 @@ export class ProductFormComponent implements OnInit {
   }
 
   save(product) {
-    this.productService.create(product);
+    if (this.id) {
+      // Update product
+      this.productService.update(this.id, this.product);
+    } else {
+      // Create new one
+      this.productService.create(product);
+    }
+
     this.router.navigate(['admin/products']);
   }
 
