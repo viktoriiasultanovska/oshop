@@ -8,7 +8,7 @@ export class CategoryService {
   constructor(private db: AngularFireDatabase) {
   }
 
-  getCategories() {
+  getCategories(): Observable<any> {
     return this.db.object('/categories')
       .valueChanges();
   }
