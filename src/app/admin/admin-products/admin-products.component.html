@@ -7,6 +7,7 @@
 <data-table
   [items]="items"
   [itemCount]="itemCount"
+  [rowColors]="rowColors"
   [title]="'Products Table'"
   (reload)="reloadItems($event)">
 
@@ -22,6 +23,7 @@
 
   <data-table-column
     [property]="'imageUrl'"
+    [resizable]="true"
     [header]="'Image'">
     <ng-template #dataTableCell let-item="item">
       <img src="{{item.imageUrl}}" alt="item.title" class="admin-product-image" />

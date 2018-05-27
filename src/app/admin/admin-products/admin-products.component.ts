@@ -14,9 +14,10 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   productsResource: DataTableResource<Product>;
   items: Product[] = [];
-  itemCount: number;
+  itemCount = 0;
 
   constructor(private productService: ProductService) {
+    this.rowColors = this.rowColors.bind(this);
     // Use snapshotChanges().map() to store the key
     this.subscription = this.productService.getAll()
       .snapshotChanges()
@@ -53,6 +54,10 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
       this.products;
 
     this.initializeTable(filteredProducts);
+  }
+
+  rowColors(product) {
+    if (product.category === 'bread') { return 'rgb(255, 255, 197)'; }
   }
 
   ngOnInit() {
