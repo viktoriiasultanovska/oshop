@@ -1,24 +1,24 @@
 import {Injectable} from '@angular/core';
-import {AngularFireDatabase} from 'angularfire2/database';
+import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import {Observable} from 'rxjs/Observable';
+import {Product} from '../../models/product';
 
 @Injectable()
 export class ProductService {
   products: Observable<any[]>;
+  productsRef = null;
   private dbPath = '/products';
 
   constructor(private db: AngularFireDatabase) {
+    this.productsRef = db.list(this.dbPath);
   }
 
-  create(product) {
-    return this.db.list('products')
-      .push(product);
+  create(product: Product) {
+    return this.productsRef.push(product);
   }
 
-  getAll(): Observable<any> {
-    this.products = this.db.list(this.dbPath, ref => ref.orderByChild('title'))
-      .snapshotChanges();
-    return this.products;
+  getAll() {
+    return this.productsRef;
   }
 
   get(id): Observable<any> {
@@ -33,8 +33,7 @@ export class ProductService {
   }
 
   delete(id) {
-    return this.db.object('/products/' + id)
-      .remove()
+    return this.productsRef.remove(id)
       .catch(error => this.handleError(error));
   }
 

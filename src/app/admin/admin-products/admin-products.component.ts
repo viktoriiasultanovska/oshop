@@ -16,6 +16,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   constructor(private productService: ProductService) {
     // Use snapshotChanges().map() to store the key
     this.productService.getAll()
+      .snapshotChanges()
       .map(changes => {
         return changes.map(c => ({key: c.payload.key, ...c.payload.val()}));
       })
