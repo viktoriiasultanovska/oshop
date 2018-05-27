@@ -1,22 +1,40 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProductService} from '../../service/product/product.service';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-admin-products',
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.css']
 })
-export class AdminProductsComponent implements OnInit {
-  products$;
+export class AdminProductsComponent implements OnInit, OnDestroy {
+  products: any[];
+  filteredProducts: any[];
+  subscription: Subscription;
 
   constructor(private productService: ProductService) {
-    this.products$ = this.productService.getAll()
-      .map(products => {
-        return products.map(product => ({key: product.payload.key, ...product.payload.val()}));
+    // Use snapshotChanges().map() to store the key
+    this.productService.getAll()
+      .map(changes => {
+        return changes.map(c => ({key: c.payload.key, ...c.payload.val()}));
+      })
+      .subscribe(products => {
+        this.filteredProducts = this.products = products;
       });
   }
 
+  filter(query: string) {
+    this.filteredProducts = (query) ?
+      this.products.filter(product => product.title.toLowerCase().includes(query.toLowerCase())) : this.products;
+  }
+
   ngOnInit() {
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 }
