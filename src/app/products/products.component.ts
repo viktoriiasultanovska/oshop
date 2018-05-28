@@ -15,27 +15,31 @@ export class ProductsComponent implements OnInit {
   categories$;
   category: string;
 
+  /**
+   * @param {ActivatedRoute} route
+   * @param {ProductService} productService
+   * @param {CategoryService} categoryService
+   */
   constructor(
     protected route: ActivatedRoute,
     protected productService: ProductService,
     protected categoryService: CategoryService
   ) {
+    // Use switchMap to switch one observable to another
     this.productService.getAll()
       .snapshotChanges()
       .map(changes => {
         return changes.map(c => ({key: c.payload.key, ...c.payload.val()}));
       })
-      .subscribe(products => {
+      .switchMap(products => {
         this.products = products;
+        return route.queryParamMap; // Second observable
+      }).subscribe(params => {
+      this.category = params.get('category');
 
-        route.queryParamMap.subscribe(params => {
-          this.category = params.get('category');
-
-          this.filteredProducts = (this.category) ?
-            this.products.filter(p => p.category === this.category) : this.products;
-        });
-
-      });
+      this.filteredProducts = (this.category) ?
+        this.products.filter(p => p.category === this.category) : this.products;
+    });
 
     this.categoryService.getAll()
       .map(changes => {
