@@ -27,6 +27,14 @@ export class ProductsComponent implements OnInit {
       })
       .subscribe(products => {
         this.products = products;
+
+        route.queryParamMap.subscribe(params => {
+          this.category = params.get('category');
+
+          this.filteredProducts = (this.category) ?
+            this.products.filter(p => p.category === this.category) : this.products;
+        });
+
       });
 
     this.categoryService.getAll()
@@ -37,12 +45,7 @@ export class ProductsComponent implements OnInit {
         this.categories$ = categories;
       });
 
-    route.queryParamMap.subscribe(params => {
-      this.category = params.get('category');
 
-      this.filteredProducts = (this.category) ?
-        this.products.filter(p => p.category === this.category) : this.products;
-    });
   }
 
   ngOnInit() {
