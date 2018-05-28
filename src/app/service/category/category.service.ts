@@ -12,7 +12,7 @@ export class CategoryService {
 
   }
 
-  getCategories(): Observable<any> {
+  getAll(): Observable<any> {
     this.categoriesRef = this.db.list('categories', ref => ref.orderByChild('name' ));
     /**
      * @see https://github.com/angular/angularfire2/blob/master/docs/rtdb/lists.md

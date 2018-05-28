@@ -21,7 +21,7 @@ export class ProductFormComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.categories = this.categoryService.getCategories()
+    this.categories = this.categoryService.getAll()
       .map(categories => {
         return categories.map(category => ({key: category.payload.key, ...category.payload.val()}));
       });

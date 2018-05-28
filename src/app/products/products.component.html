@@ -1,15 +1,31 @@
-<div class="row product-listing">
-  <ng-container *ngFor="let product of products$; index as i">
-    <div class="col">
-      <div class="card" style="width: 18rem;">
-        <img class="card-img-top" [src]="product.imageUrl" alt="{{product.title}}">
-        <div class="card-body">
-          <h5 class="card-title">{{product.title}}</h5>
-          <p class="card-text">{{product.price | currency:'USD':true}}</p>
-          <a href="#" class="btn btn-primary">Add to Card</a>
+<div class="row">
+  <div class="col-3">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let category of categories$">
+        {{category.name}}
+      </li>
+    </ul>
+  </div>
+  <div class="col">
+    <div class="row product-listing">
+      <ng-container *ngFor="let product of products$; index as i">
+        <div class="col">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" [src]="product.imageUrl" alt="{{product.title}}">
+            <div class="card-body">
+              <h5 class="card-title">{{product.title}}</h5>
+              <p class="card-text">{{product.price | currency:'USD':true}}</p>
+              <a href="#" class="btn btn-primary">Add to Card</a>
+            </div>
+          </div>
         </div>
-      </div>
+        <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div>
+      </ng-container>
     </div>
-    <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div>
-  </ng-container>
+  </div>
 </div>
+
+
+
+
+
