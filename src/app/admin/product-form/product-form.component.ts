@@ -39,7 +39,7 @@ export class ProductFormComponent implements OnInit {
 
   save(product) {
     if (this.id) {
-      // Update product
+      // Update p
       this.productService.update(this.id, this.product);
     } else {
       // Create new one
@@ -50,7 +50,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   delete() {
-    if (confirm('Are you sure you want to delete this product?')) {
+    if (confirm('Are you sure you want to delete this p?')) {
       this.productService.delete(this.id);
       this.router.navigate(['admin/products']);
     } else {

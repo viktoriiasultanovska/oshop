@@ -58,11 +58,11 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let product of filteredProducts">
-    <td><img src="{{product.imageUrl}}" alt="{{product.title}}" width="200" height="150"/></td>
-    <td>{{product.title}}</td>
-    <td>{{product.price | currency: 'USD':true}}</td>
-    <td><a [routerLink]="['/admin/products/', product.key]">Edit</a></td>
+  <tr *ngFor="let p of filteredProducts">
+    <td><img src="{{p.imageUrl}}" alt="{{p.title}}" width="200" height="150"/></td>
+    <td>{{p.title}}</td>
+    <td>{{p.price | currency: 'USD':true}}</td>
+    <td><a [routerLink]="['/admin/products/', p.key]">Edit</a></td>
   </tr>
   </tbody>
 </table>

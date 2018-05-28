@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../service/product/product.service';
 import {CategoryService} from '../service/category/category.service';
+import {ActivatedRoute} from '@angular/router';
+import {Product} from '../models/product';
 
 @Component({
   selector: 'app-products',
@@ -8,17 +10,23 @@ import {CategoryService} from '../service/category/category.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  products$;
+  products: Product[] = [];
+  filteredProducts: Product[] = [];
   categories$;
+  category: string;
 
-  constructor(protected productService: ProductService, protected categoryService: CategoryService) {
+  constructor(
+    protected route: ActivatedRoute,
+    protected productService: ProductService,
+    protected categoryService: CategoryService
+  ) {
     this.productService.getAll()
       .snapshotChanges()
       .map(changes => {
         return changes.map(c => ({key: c.payload.key, ...c.payload.val()}));
       })
       .subscribe(products => {
-        this.products$ = products;
+        this.products = products;
       });
 
     this.categoryService.getAll()
@@ -26,9 +34,15 @@ export class ProductsComponent implements OnInit {
         return changes.map(c => ({key: c.payload.key, ...c.payload.val()}));
       })
       .subscribe(categories => {
-        console.log(categories);
         this.categories$ = categories;
       });
+
+    route.queryParamMap.subscribe(params => {
+      this.category = params.get('category');
+
+      this.filteredProducts = (this.category) ?
+        this.products.filter(p => p.category === this.category) : this.products;
+    });
   }
 
   ngOnInit() {
