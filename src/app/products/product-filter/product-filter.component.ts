@@ -25,7 +25,7 @@ export class ProductFilterComponent implements OnInit {
    * @param categories
    * @returns {*}
    */
-  addAllCategoriesLink(categories) {
+  private addAllCategoriesLink(categories = []) {
     return Object.assign(categories, {0: {key: 0, name: 'All categories'}});
   }
 
