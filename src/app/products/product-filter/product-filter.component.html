@@ -1,14 +1,10 @@
 <div class="list-group">
   <a
-    routerLink="/"
-    [class.active]="!category"
-    class="list-group-item list-group-item-action">All Categories</a>
-  <a
     *ngFor="let c of categories$"
     routerLink="/"
-    [queryParams]="{category: c.key}"
+    [queryParams]="(c.key == 0) ? '' : {category: c.key}"
     class="list-group-item list-group-item-action"
-    [class.active]="category == c.key">
+    [class.active]="(!category && c.key == 0) || category == c.key">
     {{c.name}}
   </a>
 </div>

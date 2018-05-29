@@ -7,7 +7,7 @@ import {CategoryService} from '../../service/category/category.service';
   styleUrls: ['./product-filter.component.css']
 })
 export class ProductFilterComponent implements OnInit {
-  categories$;
+  categories$ = [];
   @Input('category') category;
 
   constructor(protected categoryService: CategoryService) {
@@ -17,7 +17,16 @@ export class ProductFilterComponent implements OnInit {
       })
       .subscribe(categories => {
         this.categories$ = categories;
+        this.categories$ = this.addAllCategoriesLink(this.categories$);
       });
+  }
+
+  /**
+   * @param categories
+   * @returns {*}
+   */
+  addAllCategoriesLink(categories) {
+    return Object.assign(categories, {0: {key: 0, name: 'All categories'}});
   }
 
   ngOnInit() {
