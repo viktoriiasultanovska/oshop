@@ -1,8 +1,4 @@
-.product-listing .w-100 {
-  margin: 10px 0;
-}
-
-.product-listing .card-img-top {
+.card-img-top {
   max-height: 300px;
 }
 
