@@ -27,9 +27,10 @@ import {CategoryService} from './service/category/category.service';
 import {FormsModule} from '@angular/forms';
 import {ProductService} from './service/product/product.service';
 import {CustomFormsModule} from 'ng2-validation';
-import { DataTableModule } from 'angular5-data-table';
-import { ProductFilterComponent } from './products/product-filter/product-filter.component';
-import { ProductCardComponent } from './products/product-card/product-card.component';
+import {DataTableModule} from 'angular5-data-table';
+import {ProductFilterComponent} from './products/product-filter/product-filter.component';
+import {ProductCardComponent} from './products/product-card/product-card.component';
+import {ShoppingCartService} from './service/shopping-cart/shopping-cart.service';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,7 @@ import { ProductCardComponent } from './products/product-card/product-card.compo
       }
     ])
   ],
-  providers: [AuthService, AuthGuard, UserService, AdminAuthGuard, CategoryService, ProductService],
+  providers: [AuthService, AuthGuard, UserService, AdminAuthGuard, CategoryService, ProductService, ShoppingCartService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
