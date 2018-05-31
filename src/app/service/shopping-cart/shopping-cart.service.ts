@@ -29,7 +29,7 @@ export class ShoppingCartService {
       .push({dataCreated: new Date().getTime()});
   }
 
-  private getCartItem(cartId, productId: string) {
+  private getCartItem(cartId, productId: string): any {
     return this.db.object('shopping-carts/' + cartId + '/items/' + productId);
   }
 
