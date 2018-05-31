@@ -13,23 +13,24 @@ export class ShoppingCartService {
   async addToCart(product: Product) {
     const cartId = await this.getOrCreateCartId();
 
-    const item$ = this.db.object('shopping-carts/' + cartId + '/items/' + product.key);
+    const item$ = this.getCartItem(cartId, product.key);
 
     item$.valueChanges()
       .take(1) // to don't have deal with unsubscribe
       .subscribe(item => {
         console.log(item);
-        if (item) {
-          item$.update({quantity: item.quantity + 1});
-        } else {
-          item$.set({product: product, quantity: 1});
-        }
+        const qty = (item) ? item.quantity : 0;
+        item$.update({product: product, quantity: qty + 1});
       });
   }
 
   create() {
     return this.db.list('shopping-carts')
       .push({dataCreated: new Date().getTime()});
+  }
+
+  private getCartItem(cartId, productId: string) {
+    return this.db.object('shopping-carts/' + cartId + '/items/' + productId);
   }
 
   private getCart(cartId: string) {
