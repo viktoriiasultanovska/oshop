@@ -33,11 +33,12 @@ export class ShoppingCartService {
     return this.db.object('shopping-carts/' + cartId + '/items/' + productId);
   }
 
-  private getCart(cartId: string) {
-    this.db.object('shopping-carts/' + cartId);
+  async getCart() {
+    const cartId = await this.getOrCreateCartId();
+    return this.db.object('shopping-carts/' + cartId);
   }
 
-  private async getOrCreateCartId() {
+  private async getOrCreateCartId(): Promise<string> {
     const cartId = localStorage.getItem('cartId');
 
     if (cartId) return cartId;
@@ -45,7 +46,6 @@ export class ShoppingCartService {
     const result = await this.create();
     localStorage.setItem('cartId', result.key);
     return result.key;
-
   }
 
 }

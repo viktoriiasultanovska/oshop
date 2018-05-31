@@ -6,6 +6,9 @@
 
   </div>
   <div class="card-footer" *ngIf="showActions">
-    <a (click)="addToCart(product)" class="add-to-cart-btn btn btn-primary btn-block">Add to Card</a>
+    <button (click)="addToCart(product)" class="add-to-cart-btn btn btn-primary btn-block">Add to Card</button>
+    <div>
+      {{ getQuantity() }}
+    </div>
   </div>
 </div>
