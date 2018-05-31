@@ -1,5 +1,8 @@
 import {Injectable} from '@angular/core';
 import {AngularFireDatabase} from 'angularfire2/database';
+import {Product} from '../../models/product';
+import 'rxjs/operator/take';
+import 'rxjs/operator/map';
 
 @Injectable()
 export class ShoppingCartService {
@@ -7,8 +10,21 @@ export class ShoppingCartService {
   constructor(private db: AngularFireDatabase) {
   }
 
-  addToCart(product) {
+  async addToCart(product: Product) {
+    const cartId = await this.getOrCreateCartId();
 
+    const item$ = this.db.object('shopping-carts/' + cartId + '/items/' + product.key);
+
+    item$.valueChanges()
+      .take(1) // to don't have deal with unsubscribe
+      .subscribe(item => {
+        console.log(item);
+        if (item) {
+          item$.update({quantity: item.quantity + 1});
+        } else {
+          item$.set({product: product, quantity: 1});
+        }
+      });
   }
 
   create() {
@@ -20,15 +36,15 @@ export class ShoppingCartService {
     this.db.object('shopping-carts/' + cartId);
   }
 
-  private async getOrCreateCart() {
+  private async getOrCreateCartId() {
     const cartId = localStorage.getItem('cartId');
 
-    if (!cartId) {
-      const result = await this.create();
-      localStorage.setItem('cartId', result.key);
-      return this.getCart(result.key);
-    }
-    return this.getCart(cartId);
+    if (cartId) return cartId;
+
+    const result = await this.create();
+    localStorage.setItem('cartId', result.key);
+    return result.key;
+
   }
 
 }
