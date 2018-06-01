@@ -12,7 +12,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class ProductFormComponent implements OnInit {
 
   categories: Observable<any[]>;
-  product = {};
+  product: any = {};
   id: string;
 
   constructor(
@@ -50,7 +50,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   delete() {
-    if (confirm('Are you sure you want to delete this p?')) {
+    if (confirm('Are you sure you want to delete this product?')) {
       this.productService.delete(this.id);
       this.router.navigate(['admin/products']);
     } else {
