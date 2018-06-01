@@ -10,18 +10,12 @@ export class ShoppingCartService {
   constructor(private db: AngularFireDatabase) {
   }
 
-  async addToCart(product: Product) {
-    const cartId = await this.getOrCreateCartId();
+  addToCart(product: Product) {
+    this.updateItemQuantity(product, +1);
+  }
 
-    const item$ = this.getCartItem(cartId, product.key);
-
-    item$.valueChanges()
-      .take(1) // to don't have deal with unsubscribe
-      .subscribe(item => {
-        console.log(item);
-        const qty = (item) ? item.quantity : 0;
-        item$.update({product: product, quantity: qty + 1});
-      });
+  removeFromCart(product: Product) {
+    this.updateItemQuantity(product, -1);
   }
 
   create() {
@@ -41,11 +35,26 @@ export class ShoppingCartService {
   private async getOrCreateCartId(): Promise<string> {
     const cartId = localStorage.getItem('cartId');
 
-    if (cartId) return cartId;
+    if (cartId) {
+      return cartId;
+    }
 
     const result = await this.create();
     localStorage.setItem('cartId', result.key);
     return result.key;
+  }
+
+  private async updateItemQuantity(product: Product, change: number) {
+    const cartId = await this.getOrCreateCartId();
+
+    const item$ = this.getCartItem(cartId, product.key);
+
+    item$.valueChanges()
+      .take(1) // to don't have deal with unsubscribe
+      .subscribe(item => {
+        const qty = (item) ? item.quantity : 0;
+        item$.update({product: product, quantity: qty + change});
+      });
   }
 
 }
