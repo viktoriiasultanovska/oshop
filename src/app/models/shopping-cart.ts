@@ -7,13 +7,8 @@ export class ShoppingCart {
   constructor(public itemsMap: { [productId: string]: ShoppingCartItem }) {
     for (const productId in itemsMap) {
       let item = itemsMap[productId];
-
-      let x = new ShoppingCartItem();
-      Object.assign(x, item);
-      x.$key = productId;
-      this.items.push(x);
+      this.items.push(new ShoppingCartItem(item.product, item.quantity));
     }
-    console.log(this.items);
   }
 
   get totalItemsCount() {

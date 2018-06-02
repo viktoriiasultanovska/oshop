@@ -14,11 +14,11 @@ export class ShoppingCartService {
   }
 
   addToCart(product: Product) {
-    this.updateItem(product, +1);
+    this.updateItemQuantity(product, +1);
   }
 
   removeFromCart(product: Product) {
-    this.updateItem(product, -1);
+    this.updateItemQuantity(product, -1);
   }
 
   create() {
@@ -49,7 +49,7 @@ export class ShoppingCartService {
     return result.key;
   }
 
-  private async updateItem(product: Product, change: number) {
+  private async updateItemQuantity(product: Product, change: number) {
     const cartId = await this.getOrCreateCartId();
 
     const item$ = this.getCartItem(cartId, product.key);
@@ -61,12 +61,7 @@ export class ShoppingCartService {
         if (qty + change === 0) {
           item$.remove({product: product});
         } else {
-          item$.update({
-            title: product.title,
-            imageUrl: product.imageUrl,
-            price: product.price,
-            quantity: qty + change
-          });
+          item$.update({product: product, quantity: qty + change});
         }
       });
   }
