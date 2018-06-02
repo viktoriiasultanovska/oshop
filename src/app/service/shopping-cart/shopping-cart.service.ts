@@ -58,7 +58,11 @@ export class ShoppingCartService {
       .take(1) // to don't have deal with unsubscribe
       .subscribe(item => {
         const qty = (item) ? item.quantity : 0;
-        item$.update({product: product, quantity: qty + change});
+        if (qty + change === 0) {
+          item$.remove({product: product});
+        } else {
+          item$.update({product: product, quantity: qty + change});
+        }
       });
   }
 
