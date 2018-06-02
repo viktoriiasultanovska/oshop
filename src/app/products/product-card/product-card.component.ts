@@ -27,8 +27,13 @@ export class ProductCardComponent {
     if (!this.shoppingCart) {
       return 0;
     }
-    const item = this.shoppingCart.items[this.product.key];
-    return item ? item.quantity : 0;
+    let qty = 0;
+    for (let key in this.shoppingCart.items) {
+      if (this.shoppingCart.items[key].product.key === this.product.key) {
+        qty += this.shoppingCart.items[key].quantity;
+      }
+    }
+    return qty;
   }
 
 }
