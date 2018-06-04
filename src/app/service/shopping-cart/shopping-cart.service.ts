@@ -14,11 +14,12 @@ export class ShoppingCartService {
   }
 
   addToCart(product: Product) {
-    this.updateItemQuantity(product, +1);
+    this.updateItem(product, +1);
   }
 
   removeFromCart(product: Product) {
-    this.updateItemQuantity(product, -1);
+    console.log(product);
+    this.updateItem(product, -1);
   }
 
   create() {
@@ -49,19 +50,25 @@ export class ShoppingCartService {
     return result.key;
   }
 
-  private async updateItemQuantity(product: Product, change: number) {
+  private async updateItem(product: Product, change: number) {
     const cartId = await this.getOrCreateCartId();
 
-    const item$ = this.getCartItem(cartId, product.key);
+    let item$ = this.getCartItem(cartId, product.key);
 
     item$.valueChanges()
       .take(1) // to don't have deal with unsubscribe
       .subscribe(item => {
         const qty = (item) ? item.quantity : 0;
-        if (qty + change === 0) {
-          item$.remove({product: product});
+        const quantity = qty + change;
+        if (quantity === 0) {
+          item$.remove();
         } else {
-          item$.update({product: product, quantity: qty + change});
+          item$.update({
+            title: product.title,
+            imageUrl: product.imageUrl,
+            price: product.price,
+            quantity: quantity
+          });
         }
       });
   }
