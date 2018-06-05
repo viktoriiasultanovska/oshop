@@ -13,6 +13,13 @@ export class ShoppingCartService {
   constructor(private db: AngularFireDatabase) {
   }
 
+  async getCart(): Promise<Observable<ShoppingCart>> {
+    const cartId = await this.getOrCreateCartId();
+    const y$: Observable<any> = this.db.object('shopping-carts/' + cartId)
+      .valueChanges();
+    return y$.map(x => new ShoppingCart(x.items));
+  }
+
   addToCart(product: Product) {
     this.updateItem(product, +1);
   }
@@ -22,6 +29,12 @@ export class ShoppingCartService {
     this.updateItem(product, -1);
   }
 
+  async clearCart() {
+    const cartId = await this.getOrCreateCartId();
+    this.db.object('shopping-carts/' + cartId + '/items')
+      .remove();
+  }
+
   create() {
     return this.db.list('shopping-carts')
       .push({dateCreated: new Date().getTime()});
@@ -29,13 +42,6 @@ export class ShoppingCartService {
 
   private getCartItem(cartId, productId: string): any {
     return this.db.object('shopping-carts/' + cartId + '/items/' + productId);
-  }
-
-  async getCart(): Promise<Observable<ShoppingCart>> {
-    const cartId = await this.getOrCreateCartId();
-    const y$: Observable<any> = this.db.object('shopping-carts/' + cartId)
-      .valueChanges();
-    return y$.map(x => new ShoppingCart(x.items));
   }
 
   private async getOrCreateCartId(): Promise<string> {
