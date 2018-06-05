@@ -1,5 +1,3 @@
-import { Product } from './product';
-
 export class ShoppingCartItem {
   key: string;
   title: string;
@@ -7,5 +5,12 @@ export class ShoppingCartItem {
   price: number;
   quantity: number;
 
-  get totalPrice() { return this.price * this.quantity; }
+  constructor(init?: Partial<ShoppingCartItem>) {
+    // Copy all the properties from this to init
+    Object.assign(this, init);
+  }
+
+  get totalPrice() {
+    return this.price * this.quantity;
+  }
 }

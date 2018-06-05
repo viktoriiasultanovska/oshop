@@ -8,10 +8,8 @@ export class ShoppingCart {
     this.itemsMap = itemsMap || {};
     for (const productId in itemsMap) {
       const item = itemsMap[productId];
-      const shoppingCartItem = new ShoppingCartItem();
-      Object.assign(shoppingCartItem, item); // Copy all the properties from item (firebase object) to shoppingCartItem
-      shoppingCartItem.key = productId;
-      this.items.push(shoppingCartItem);
+      // ...item - spread operator https://basarat.gitbooks.io/typescript/docs/spread-operator.html
+      this.items.push(new ShoppingCartItem({ ...item, key: productId }));
     }
   }
 
