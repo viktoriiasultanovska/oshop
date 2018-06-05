@@ -4,6 +4,7 @@
   <table class="table">
     <thead>
     <tr>
+      <th></th>
       <th>Product</th>
       <th class="text-center qty-col">Quantity</th>
       <th class="price-col text-right">Price per Item</th>
@@ -12,6 +13,9 @@
     </thead>
     <tbody>
     <tr *ngFor="let item of cart.items">
+      <td>
+        <div [style.backgroundImage]=" 'url(' + item.imageUrl + ')' " class="thumbnail"></div>
+      </td>
       <td>{{item.title}}</td>
       <td>
         <app-product-quantity [product]="item" [shopping-cart]="cart"></app-product-quantity>
@@ -22,6 +26,7 @@
     </tbody>
     <tfoot>
     <tr>
+      <td></td>
       <td></td>
       <td></td>
       <td></td>

@@ -1,10 +1,12 @@
 .card {
   margin-bottom: 30px;
 }
+
 .card-footer {
   padding: 0;
 }
 
-a.add-to-cart-btn, a.add-to-cart-btn:hover {
+a.add-to-cart-btn,
+a.add-to-cart-btn:hover {
   color: #fff;
 }
