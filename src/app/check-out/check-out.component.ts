@@ -11,7 +11,7 @@ import {AuthService} from '../service/auth/auth.service';
   styleUrls: ['./check-out.component.css']
 })
 export class CheckOutComponent implements OnInit, OnDestroy {
-  shipping = {};
+  shipping: any = {};
   cart: ShoppingCart;
   userId: string;
   cartSubscription: Subscription;
@@ -21,9 +21,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     protected shoppingCartService: ShoppingCartService,
     private orderService: OrderService
-  ) {
-
-  }
+  ) {}
 
   async ngOnInit() {
     const cart$ = await this.shoppingCartService.getCart();
