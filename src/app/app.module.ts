@@ -32,6 +32,7 @@ import {ProductFilterComponent} from './products/product-filter/product-filter.c
 import {ProductCardComponent} from './products/product-card/product-card.component';
 import {ShoppingCartService} from './service/shopping-cart/shopping-cart.service';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import {OrderService} from './service/order/order.service';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
       }
     ])
   ],
-  providers: [AuthService, AuthGuard, UserService, AdminAuthGuard, CategoryService, ProductService, ShoppingCartService],
+  providers: [AuthService, AuthGuard, UserService, AdminAuthGuard, CategoryService, ProductService, ShoppingCartService, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
