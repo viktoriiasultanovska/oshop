@@ -36,7 +36,7 @@
     [sortable]="true"
     [resizable]="true">
     <ng-template #dataTableCell let-item="item">
-      {{item.price | currency: 'USD':true}}
+      {{item.price | currency: 'USD':'symbol':'1.2-2'}}
     </ng-template>
   </data-table-column>
 
@@ -47,23 +47,3 @@
   </data-table-column>
 
 </data-table>
-<!--
-<table class="table">
-  <thead>
-  <tr>
-    <th>Image</th>
-    <th>Title</th>
-    <th>Price</th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let p of filteredProducts">
-    <td><img src="{{p.imageUrl}}" alt="{{p.title}}" width="200" height="150"/></td>
-    <td>{{p.title}}</td>
-    <td>{{p.price | currency: 'USD':true}}</td>
-    <td><a [routerLink]="['/admin/products/', p.key]">Edit</a></td>
-  </tr>
-  </tbody>
-</table>
--->

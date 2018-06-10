@@ -5,11 +5,11 @@
     <ul class="list-group list-group-flush">
       <li class="list-group-item" *ngFor="let item of cart.items">
         {{item.quantity}} x {{item.title}}
-        <div class="float-right">{{item.totalPrice | currency:'USD':true}}</div>
+        <div class="float-right">{{item.totalPrice | currency:'USD':'symbol':'1.2-2'}}</div>
       </li>
       <li class="list-group-item font-weight-bold">
         Total:
-        <div class="float-right">{{cart.totalPrice | currency:'USD':true}}</div>
+        <div class="float-right">{{cart.totalPrice | currency:'USD':'symbol':'1.2-2'}}</div>
       </li>
     </ul>
   </div>

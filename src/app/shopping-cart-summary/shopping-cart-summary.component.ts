@@ -10,7 +10,6 @@ export class ShoppingCartSummaryComponent {
   @Input('cart') cart: ShoppingCart;
 
   constructor() {
-    console.log(this.cart);
   }
 
 }

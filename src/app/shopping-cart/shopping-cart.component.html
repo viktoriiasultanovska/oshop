@@ -26,8 +26,8 @@
       <td>
         <app-product-quantity [product]="item" [shopping-cart]="cart"></app-product-quantity>
       </td>
-      <td class="text-right">{{item.price | currency:'USD':true}}</td>
-      <td class="text-right">{{item.totalPrice | currency:'USD':true}}</td>
+      <td class="text-right">{{item.price | currency:'USD':'symbol':'1.2-2'}}</td>
+      <td class="text-right">{{item.totalPrice | currency:'USD':'symbol':'1.2-2'}}</td>
     </tr>
     </tbody>
     <tfoot>
@@ -36,7 +36,7 @@
       <td></td>
       <td></td>
       <td></td>
-      <td  class="text-right"><b>Cart Total: </b>{{cart.totalPrice | currency:'USD':true}}</td>
+      <td  class="text-right"><b>Cart Total: </b>{{cart.totalPrice | currency:'USD':'symbol':'1.2-2'}}</td>
     </tr>
     </tfoot>
   </table>
