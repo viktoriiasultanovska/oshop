@@ -19,6 +19,15 @@
     "paths": {
       "shared/*": [
         "app/shared/*"
+      ],
+      "admin/*": [
+        "app/admin/*"
+      ],
+      "core/*": [
+        "app/core/*"
+      ],
+      "shopping/*": [
+        "app/shopping/*"
       ]
     }
   }
