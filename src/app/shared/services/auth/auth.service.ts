@@ -6,7 +6,7 @@ import {ActivatedRoute} from '@angular/router';
 import {UserService} from '../user/user.service';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of';
-import {AppUser} from 'app/shared/models/app-user';
+import {AppUser} from 'shared/models/app-user';
 
 @Injectable()
 export class AuthService {
