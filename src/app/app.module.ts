@@ -31,11 +31,11 @@ import {DataTableModule} from 'angular5-data-table';
 import {ProductFilterComponent} from './products/product-filter/product-filter.component';
 import {ProductCardComponent} from './products/product-card/product-card.component';
 import {ShoppingCartService} from './service/shopping-cart/shopping-cart.service';
-import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import {ProductQuantityComponent} from './product-quantity/product-quantity.component';
 import {OrderService} from './service/order/order.service';
-import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
-import { ShippingFormComponent } from './shipping-form/shipping-form.component';
-import { OrderDetailsComponent } from './order-details/order-details.component';
+import {ShoppingCartSummaryComponent} from './shopping-cart-summary/shopping-cart-summary.component';
+import {ShippingFormComponent} from './shipping-form/shipping-form.component';
+import {OrderDetailsComponent} from './order-details/order-details.component';
 
 @NgModule({
   declarations: [

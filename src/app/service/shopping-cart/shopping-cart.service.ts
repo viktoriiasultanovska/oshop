@@ -4,7 +4,6 @@ import {Product} from '../../models/product';
 import 'rxjs/operator/take';
 import 'rxjs/operator/map';
 import {ShoppingCart} from '../../models/shopping-cart';
-import {AngularFireObject} from 'angularfire2/database/interfaces';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()

@@ -1,9 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 import {AuthService} from '../service/auth/auth.service';
 import {OrderService} from '../service/order/order.service';
 import {Subscription} from 'rxjs/Subscription';
-import {Order} from '../models/order';
 import {Observable} from 'rxjs/Observable';
 
 @Component({

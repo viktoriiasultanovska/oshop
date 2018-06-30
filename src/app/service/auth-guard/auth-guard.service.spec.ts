@@ -1,6 +1,6 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {inject, TestBed} from '@angular/core/testing';
 
-import { AuthGuard } from './auth-guard.service';
+import {AuthGuard} from './auth-guard.service';
 
 describe('AuthGuard', () => {
   beforeEach(() => {

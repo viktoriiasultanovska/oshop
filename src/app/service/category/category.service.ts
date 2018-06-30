@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
-import {AngularFireAction, AngularFireDatabase} from 'angularfire2/database';
+import {AngularFireDatabase} from 'angularfire2/database';
 import {Observable} from 'rxjs/Observable';
 import {AngularFireList} from 'angularfire2/database/interfaces';
-import * as firebase from 'firebase';
 
 @Injectable()
 export class CategoryService {

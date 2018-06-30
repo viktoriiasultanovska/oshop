@@ -1,6 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {OrderService} from '../service/order/order.service';
-import {ShoppingCartService} from '../service/shopping-cart/shopping-cart.service';
 import {ShoppingCart} from '../models/shopping-cart';
 import {Router} from '@angular/router';
 import {AuthService} from '../service/auth/auth.service';

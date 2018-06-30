@@ -1,9 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {AuthService} from '../service/auth/auth.service';
 import {AppUser} from '../models/app-user';
 import {ShoppingCartService} from '../service/shopping-cart/shopping-cart.service';
-import {Subscription} from 'rxjs/Subscription';
 import {ShoppingCart} from '../models/shopping-cart';
 
 @Component({

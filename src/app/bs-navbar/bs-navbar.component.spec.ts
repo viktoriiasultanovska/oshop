@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { BsNavbarComponent } from './bs-navbar.component';
+import {BsNavbarComponent} from './bs-navbar.component';
 
 describe('BsNavbarComponent', () => {
   let component: BsNavbarComponent;

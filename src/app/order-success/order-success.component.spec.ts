@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OrderSuccessComponent } from './order-success.component';
+import {OrderSuccessComponent} from './order-success.component';
 
 describe('OrderSuccessComponent', () => {
   let component: OrderSuccessComponent;
