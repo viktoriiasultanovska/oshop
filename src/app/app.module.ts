@@ -18,24 +18,17 @@ import {MyOrdersComponent} from 'app/shopping/components/my-orders/my-orders.com
 import {AdminProductsComponent} from 'app/admin/components/admin-products/admin-products.component';
 import {AdminOrdersComponent} from 'app/admin/components/admin-orders/admin-orders.component';
 import {LoginComponent} from 'app/core/components/login/login.component';
-import {AuthService} from 'shared/services/auth/auth.service';
 import {AuthGuard} from 'shared/services/auth-guard/auth-guard.service';
-import {UserService} from 'shared/services/user/user.service';
 import {AdminAuthGuard} from 'app/admin/services/admin-auth-guard/admin-auth-guard.service';
 import {ProductFormComponent} from 'app/admin/components/product-form/product-form.component';
-import {CategoryService} from 'shared/services/category/category.service';
 import {FormsModule} from '@angular/forms';
-import {ProductService} from 'shared/services/product/product.service';
 import {CustomFormsModule} from 'ng2-validation';
 import {DataTableModule} from 'angular5-data-table';
 import {ProductFilterComponent} from 'app/shopping/components/products/product-filter/product-filter.component';
-import {ProductCardComponent} from 'shared/components/product-card/product-card.component';
-import {ShoppingCartService} from 'shared/services/shopping-cart/shopping-cart.service';
-import {ProductQuantityComponent} from 'shared/components/product-quantity/product-quantity.component';
-import {OrderService} from 'shared/services/order/order.service';
 import {ShoppingCartSummaryComponent} from 'app/shopping/components/shopping-cart-summary/shopping-cart-summary.component';
 import {ShippingFormComponent} from 'app/shopping/components/shipping-form/shipping-form.component';
 import {OrderDetailsComponent} from 'app/shopping/components/order-details/order-details.component';
+import {SharedModule} from 'shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -52,14 +45,14 @@ import {OrderDetailsComponent} from 'app/shopping/components/order-details/order
     LoginComponent,
     ProductFormComponent,
     ProductFilterComponent,
-    ProductCardComponent,
-    ProductQuantityComponent,
+
     ShoppingCartSummaryComponent,
     ShippingFormComponent,
     OrderDetailsComponent
   ],
   imports: [
     BrowserModule,
+    SharedModule,
     FormsModule,
     CustomFormsModule,
     DataTableModule,
@@ -99,7 +92,12 @@ import {OrderDetailsComponent} from 'app/shopping/components/order-details/order
       }
     ])
   ],
-  providers: [AuthService, AuthGuard, UserService, AdminAuthGuard, CategoryService, ProductService, ShoppingCartService, OrderService],
+  providers: [
+    AuthGuard,
+    AdminAuthGuard,
+
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
