@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {AuthService} from './service/auth/auth.service';
+import {AuthService} from 'app/shared/services/auth/auth.service';
 import {Router} from '@angular/router';
-import {UserService} from './service/user/user.service';
+import {UserService} from 'app/shared/services/user/user.service';
 
 @Component({
   selector: 'app-root',
