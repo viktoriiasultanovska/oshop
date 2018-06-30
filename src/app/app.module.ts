@@ -29,6 +29,7 @@ import {ShoppingCartSummaryComponent} from 'app/shopping/components/shopping-car
 import {ShippingFormComponent} from 'app/shopping/components/shipping-form/shipping-form.component';
 import {OrderDetailsComponent} from 'app/shopping/components/order-details/order-details.component';
 import {SharedModule} from 'shared/shared.module';
+import {AdminModule} from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -40,10 +41,10 @@ import {SharedModule} from 'shared/shared.module';
     CheckOutComponent,
     OrderSuccessComponent,
     MyOrdersComponent,
-    AdminProductsComponent,
-    AdminOrdersComponent,
+
+
     LoginComponent,
-    ProductFormComponent,
+
     ProductFilterComponent,
 
     ShoppingCartSummaryComponent,
@@ -53,6 +54,7 @@ import {SharedModule} from 'shared/shared.module';
   imports: [
     BrowserModule,
     SharedModule,
+    AdminModule,
     FormsModule,
     CustomFormsModule,
     DataTableModule,
@@ -69,34 +71,11 @@ import {SharedModule} from 'shared/shared.module';
       {path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard]},
       {path: 'order-success/:id', component: OrderSuccessComponent},
       {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard]},
-      {path: 'my/orders/:id', component: OrderDetailsComponent, canActivate: [AuthGuard]},
-      {
-        path: 'admin/products/new',
-        component: ProductFormComponent,
-        canActivate: [AuthGuard, AdminAuthGuard]
-      },
-      {
-        path: 'admin/products/:id',
-        component: ProductFormComponent,
-        canActivate: [AuthGuard, AdminAuthGuard]
-      },
-      {
-        path: 'admin/products',
-        component: AdminProductsComponent,
-        canActivate: [AuthGuard, AdminAuthGuard]
-      },
-      {
-        path: 'admin/orders',
-        component: AdminOrdersComponent,
-        canActivate: [AuthGuard, AdminAuthGuard]
-      }
+      {path: 'my/orders/:id', component: OrderDetailsComponent, canActivate: [AuthGuard]}
     ])
   ],
   providers: [
     AuthGuard,
-    AdminAuthGuard,
-
-
   ],
   bootstrap: [AppComponent]
 })
