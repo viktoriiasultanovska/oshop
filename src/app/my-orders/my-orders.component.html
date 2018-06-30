@@ -8,11 +8,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let order of orders$ | async">
+    <tr *ngFor="let order of orders | async">
       <td>{{ order.shipping.name }}</td>
       <td>{{ order.datePlaced | date}}</td>
       <td>
-        <a [routerLink]="['/my/orders/', order.key]">View</a>
+        <a [routerLink]="['/my/orders/', order.orderId]">View</a>
       </td>
     </tr>
   </tbody>

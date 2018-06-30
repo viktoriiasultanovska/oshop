@@ -18,7 +18,6 @@ export class OrderDetailsComponent implements OnInit {
       .valueChanges()
       .take(1)
       .subscribe(order => {
-        console.log(order);
         this.order = order;
       });
   }
