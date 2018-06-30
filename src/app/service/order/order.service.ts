@@ -16,8 +16,11 @@ export class OrderService {
 
   getOrdersByUser(userId: string) {
     return this.db
-      .list('orders', ref => ref.orderByChild('userId').equalTo(userId))
-      .valueChanges();
+      .list('orders', ref => ref.orderByChild('userId').equalTo(userId));
+  }
+
+  getOrderByKey(key: string) {
+    return this.db.object('orders/' + key);
   }
 
 }

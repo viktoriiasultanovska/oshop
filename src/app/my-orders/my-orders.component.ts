@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 import {AuthService} from '../service/auth/auth.service';
 import {OrderService} from '../service/order/order.service';
@@ -15,6 +15,13 @@ export class MyOrdersComponent {
     private authService: AuthService,
     private orderService: OrderService) {
 
-    this.orders$ = authService.user$.switchMap(u => orderService.getOrdersByUser(u.uid));
+    authService.user$
+      .subscribe(u => {
+        this.orders$ =  orderService.getOrdersByUser(u.uid)
+          .snapshotChanges()
+          .map(changes => {
+            return changes.map(c => ({key: c.payload.key, ...c.payload.val()}));
+          });
+      });
   }
 }
