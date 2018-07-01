@@ -37,6 +37,9 @@ import {SharedModule} from 'shared/shared.module';
     ShoppingCartSummaryComponent,
     ShippingFormComponent,
     ProductFilterComponent
+  ],
+  exports: [
+    ProductsComponent
   ]
 })
 export class ShoppingModule {
