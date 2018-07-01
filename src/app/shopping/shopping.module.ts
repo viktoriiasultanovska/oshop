@@ -1,5 +1,4 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {OrderDetailsComponent} from './components/order-details/order-details.component';
 import {ShoppingCartSummaryComponent} from './components/shopping-cart-summary/shopping-cart-summary.component';
 import {ProductFilterComponent} from './components/products/product-filter/product-filter.component';
@@ -11,14 +10,11 @@ import {ShoppingCartComponent} from './components/shopping-cart/shopping-cart.co
 import {ProductsComponent} from './components/products/products.component';
 import {AuthGuard} from 'shared/services/auth-guard/auth-guard.service';
 import {RouterModule} from '@angular/router';
-import {FormsModule} from '@angular/forms';
 import {SharedModule} from 'shared/shared.module';
 
 @NgModule({
   imports: [
     SharedModule,
-    CommonModule,
-    FormsModule,
     RouterModule.forChild([
       {path: 'products', component: ProductsComponent},
       {path: 'shopping-cart', component: ShoppingCartComponent},
