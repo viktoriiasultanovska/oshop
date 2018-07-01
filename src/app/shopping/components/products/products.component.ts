@@ -20,6 +20,7 @@ export class ProductsComponent implements OnInit {
   /**
    * @param {ActivatedRoute} route
    * @param {ProductService} productService
+   * @param {ShoppingCartService} shoppingCartService
    */
   constructor(
     private route: ActivatedRoute,
